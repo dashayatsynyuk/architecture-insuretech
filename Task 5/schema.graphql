@@ -1,0 +1,37 @@
+type Client {
+  id: ID!
+  name: String
+  age: Int
+  documents: [Document!]!
+  relatives: [Relative!]!
+}
+
+type Document {
+  id: ID!
+  type: String
+  number: String
+  issueDate: String
+  expiryDate: String
+}
+
+type Relative {
+  id: ID!
+  relationType: String
+  name: String
+  age: Int
+}
+
+type Query {
+  "аналог GET /clients/{id}"
+  client(id: ID!): Client
+
+  "GET /clients/{id}/documents"
+  clientDocuments(id: ID!): [Document!]!
+
+  "GET /clients/{id}/relatives"
+  clientRelatives(id: ID!): [Relative!]!
+}
+
+schema {
+  query: Query
+}
